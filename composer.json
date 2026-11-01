@@ -1,0 +1,47 @@
+{
+    "name": "astrx/kernel",
+    "description": "The controller contract and the base class controllers extend.",
+    "license": "LicenseRef-DoWhatever",
+    "type": "library",
+    "keywords": [
+        "astrx",
+        "no-javascript",
+        "server-rendered"
+    ],
+    "homepage": "https://github.com/Vxmdzhb/kernel",
+    "require": {
+        "php": ">=8.4",
+        "astrx/http": "self.version",
+        "astrx/result": "self.version",
+        "astrx/session": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "AstrX\\Kernel\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Vxmdzhb/result"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Vxmdzhb/support"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Vxmdzhb/config"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Vxmdzhb/http"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Vxmdzhb/session"
+        }
+    ]
+}
