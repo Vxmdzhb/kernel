@@ -6,7 +6,7 @@ A component of [AstrX](https://github.com/Vxmdzhb/astrx), the PHP framework for 
 that work without JavaScript. It used to live in
 [`astrx/framework`](https://github.com/Vxmdzhb/framework); this repository carries its history over.
 
-Depends on: [`astrx/http`](https://github.com/Vxmdzhb/http), [`astrx/result`](https://github.com/Vxmdzhb/result), [`astrx/session`](https://github.com/Vxmdzhb/session).
+Depends on: [`astrx/http`](https://github.com/Vxmdzhb/http), [`astrx/result`](https://github.com/Vxmdzhb/result), [`astrx/routing`](https://github.com/Vxmdzhb/routing), [`astrx/session`](https://github.com/Vxmdzhb/session).
 
 AstrX isn't on Packagist and doesn't tag versions: you install from each
 repository's `main`, and your `composer.lock` pins the exact commit. Tell
@@ -22,6 +22,7 @@ Composer where to find the package and the AstrX packages it depends on:
         { "type": "vcs", "url": "https://github.com/Vxmdzhb/support" },
         { "type": "vcs", "url": "https://github.com/Vxmdzhb/config" },
         { "type": "vcs", "url": "https://github.com/Vxmdzhb/http" },
+        { "type": "vcs", "url": "https://github.com/Vxmdzhb/routing" },
         { "type": "vcs", "url": "https://github.com/Vxmdzhb/session" }
     ]
 }

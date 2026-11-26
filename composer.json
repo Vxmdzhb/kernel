@@ -13,6 +13,7 @@
         "php": ">=8.4",
         "astrx/http": "self.version",
         "astrx/result": "self.version",
+        "astrx/routing": "self.version",
         "astrx/session": "self.version"
     },
     "minimum-stability": "dev",

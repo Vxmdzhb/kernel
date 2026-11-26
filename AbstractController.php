@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace AstrX\Kernel;
 
 use AstrX\Http\Request;
+use AstrX\Routing\PathParameters;
 use AstrX\Http\Response;
 use AstrX\Result\Diagnostics;
 use AstrX\Result\Result;
@@ -50,7 +51,9 @@ abstract class AbstractController implements Controller
      * rendering path.
      *
      * The processor signature is `function(string $prgToken): string` where
-     * the returned string is an optional URL suffix (e.g. "?edit=3").
+     * the returned string is an optional URL suffix (e.g. "?edit=3"). On a
+     * rewrite-mode URL (one without a query string) its parameters are written
+     * as path pairs, /edit/3, like UrlGenerator::toPage() writes them.
      */
     final protected function handlePrgPost(
         Request    $request,
@@ -67,7 +70,15 @@ abstract class AbstractController implements Controller
         $suffix = $processor($prgToken);
         $qs     = is_string($suffix) ? $suffix : '';
 
-        if (str_starts_with($qs, '?') && str_contains($selfUrl, '?')) {
+        if (str_starts_with($qs, '?') && !str_contains($selfUrl, '?')) {
+            // A query-mode URL always has a query string (?page=...), so this
+            // is a rewrite-mode page URL: its parameters go in the path.
+            parse_str(substr($qs, 1), $params);
+            [$pairs, $rest] = PathParameters::split($params);
+            $qs = ($pairs !== [] ? '/' . implode('/', array_map('rawurlencode', $pairs)) : '')
+                . ($rest !== [] ? '?' . http_build_query($rest) : '');
+            $selfUrl = rtrim($selfUrl, '/');
+        } elseif (str_starts_with($qs, '?') && str_contains($selfUrl, '?')) {
             $qs = '&' . substr($qs, 1);
         }
 
